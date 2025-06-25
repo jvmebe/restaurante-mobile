@@ -39,7 +39,7 @@ export default function PedidosPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   // Estados para os filtros e abas
-  const [abaAtiva, setAbaAtiva] = useState<"aberto" | "finalizado">("aberto");
+  const [abaAtiva, setAbaAtiva] = useState<"aberto" | "entregue">("aberto");
   const [filtroMesa, setFiltroMesa] = useState("");
   const [filtroData, setFiltroData] = useState<Date | undefined>();
 
@@ -105,7 +105,7 @@ export default function PedidosPage() {
       <Tabs defaultValue="aberto" onValueChange={(value) => setAbaAtiva(value as any)} className="w-full">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="aberto">Em Aberto</TabsTrigger>
-          <TabsTrigger value="finalizado">Finalizados</TabsTrigger>
+          <TabsTrigger value="entregue">Entregue</TabsTrigger>
         </TabsList>
       </Tabs>
       

@@ -9,7 +9,7 @@ export interface Mesa {
 export interface Categoria {
   id: number;
   nome: string;
-  imagemUrl: string; // NOVO CAMPO
+  imagemUrl: string;
 }
 
 export interface Produto {
@@ -27,7 +27,7 @@ export interface PedidoSalvo {
   id: number;
   mesaId: string;
   mesaNome: string;
-  status: 'aberto' | 'finalizado';
+  status: 'aberto' | 'entregue';
   dataHora: Date;
   itens: OrderItem[];
   valorTotal: number;
@@ -89,7 +89,7 @@ let pedidosSalvos: PedidoSalvo[] = [
     id: 3,
     mesaId: '3',
     mesaNome: 'Mesa 03',
-    status: 'finalizado',
+    status: 'entregue',
     dataHora: new Date('2025-06-23T19:00:00'),
     itens: [
       { id: 101, nome: "Barca Miyako (2 Pessoas)", preco: 120.00, categoriaId: 1, isPopular: true, descricaoBreve: "", ingredientes: [], quantity: 1 },
@@ -229,7 +229,7 @@ export async function finalizarPedido(pedidoId: number): Promise<{success: boole
     return { success: false };
   }
 
-  pedidosSalvos[pedidoIndex].status = 'finalizado';
+  pedidosSalvos[pedidoIndex].status = 'entregue';
   return { success: true };
 }
 

@@ -47,11 +47,11 @@ export async function closeOrderAction(pedidoId: number) {
   try {
     const result = await finalizarPedido(pedidoId);
     if (result.success) {
-      return { success: true, message: "Pedido finalizado com sucesso!" };
+      return { success: true, message: "Pedido entregue!" };
     }
-    throw new Error("Pedido não encontrado na API.");
+    throw new Error("Pedido não encontrado.");
   } catch (error) {
     console.error("Erro ao finalizar o pedido:", error);
-    return { success: false, message: "Falha ao finalizar o pedido." };
+    return { success: false, message: "Falha ao marcar pedido como entregue." };
   }
 }

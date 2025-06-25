@@ -59,7 +59,7 @@ export default function PedidoDetalhesPage({ params }: { params: { pedidoId: str
       if (result.success) {
         toast.success(result.message);
         if (pedido) {
-          setPedido({ ...pedido, status: 'finalizado' });
+          setPedido({ ...pedido, status: 'entregue' });
         }
       } else {
         toast.error(result.message);
@@ -143,7 +143,7 @@ export default function PedidoDetalhesPage({ params }: { params: { pedidoId: str
           onClick={handleFinalizarPedido}
           disabled={isPending}
         >
-          {isPending ? (<Loader2 className="mr-2 h-6 w-6 animate-spin" />) : ("Finalizar Pedido")}
+          {isPending ? (<Loader2 className="mr-2 h-6 w-6 animate-spin" />) : ("Marcar como entregue")}
         </Button>
       )}
     </div>
