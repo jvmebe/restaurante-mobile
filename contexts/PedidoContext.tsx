@@ -1,5 +1,3 @@
-// test/contexts/OrderContext.tsx - VERSÃO COMPLETA E CORRIGIDA
-
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from 'react';
@@ -17,10 +15,10 @@ interface OrderContextType {
   totalItems: number;
   totalValue: number;
   selectedMesaId: string | null;
-  setSelectedMesaId: (id: string | null) => void; // Corrigido para aceitar null
-  observacoes: string; // NOVO
-  setObservacoes: (text: string) => void; // NOVO
-  clearOrder: () => void; // NOVO
+  setSelectedMesaId: (id: string | null) => void;
+  observacoes: string;
+  setObservacoes: (text: string) => void;
+  clearOrder: () => void;
 }
 
 const OrderContext = createContext<OrderContextType | undefined>(undefined);
@@ -28,19 +26,14 @@ const OrderContext = createContext<OrderContextType | undefined>(undefined);
 export function OrderProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<OrderItem[]>([]);
   const [selectedMesaId, setSelectedMesaId] = useState<string | null>(null);
-  const [observacoes, setObservacoes] = useState(""); // NOVO ESTADO
+  const [observacoes, setObservacoes] = useState("");
 
-  /**
-   * CORREÇÃO APLICADA AQUI:
-   * Lógica para adicionar um produto ao pedido.
-   */
+
   const addToOrder = (product: Produto, quantity: number) => {
     setItems(prevItems => {
-      // Verifica se o item já existe no pedido
       const existingItem = prevItems.find(item => item.id === product.id);
 
       if (existingItem) {
-        // Se já existe, atualiza a quantidade do item existente
         return prevItems.map(item =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + quantity }
@@ -48,7 +41,6 @@ export function OrderProvider({ children }: { children: ReactNode }) {
         );
       }
       
-      // Se for um item novo, adiciona ao final do array do pedido
       return [...prevItems, { ...product, quantity }];
     });
   };
@@ -89,9 +81,9 @@ export function OrderProvider({ children }: { children: ReactNode }) {
       totalValue,
       selectedMesaId,
       setSelectedMesaId,
-      observacoes, // NOVO
-      setObservacoes, // NOVO
-      clearOrder, // NOVO
+      observacoes,
+      setObservacoes,
+      clearOrder,
     }}>
       {children}
     </OrderContext.Provider>

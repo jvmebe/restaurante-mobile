@@ -36,7 +36,7 @@ export interface PedidoSalvo {
 
 
 // Simula latencia rede
-const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+const delay = (ms: number) => new Promise(res => setTimeout(res, 1));
 
 export async function fetchMesas(): Promise<Mesa[]> {
   await delay(500);

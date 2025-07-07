@@ -13,10 +13,8 @@ export default function LoginPage() {
   const router = useRouter();
 
   const handleLogin = () => {
-    // Substituir pela logica de login real quando API estiver pronta
     console.log("Simulando login e salvando cookie...");
     
-    // Salva um cookie placeholder para que o middleware possa usar.
     Cookies.set('auth_token', 'mock_token_value', { expires: 1 }); 
 
     router.push("/home");
@@ -26,7 +24,7 @@ export default function LoginPage() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white p-8">
       <div className="w-full max-w-sm flex flex-col items-center">
         <Image 
-          src="/miyako-logo.png"
+          src="/images/logo.png"
           alt="Logo Miyako"
           width={100}
           height={100}
@@ -36,10 +34,9 @@ export default function LoginPage() {
         <h1 className="text-3xl font-bold mb-8">Fazer login</h1>
 
         <div className="w-full space-y-6">
-          {/* Input matricula */}
           <div className="relative">
             <Label htmlFor="matricula" className="text-xs text-gray-400">MATRÍCULA:</Label>
-            <User className="absolute left-3 top-1/2 -translate-y-[-8px] h-5 w-5 text-gray-400" />
+            <User className="absolute left-3 top-1/2 h-5 w-5 text-gray-400" />
             <Input 
               id="matricula" 
               placeholder="1234567" 
@@ -47,17 +44,16 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Input senha */}
           <div className="relative">
             <Label htmlFor="senha" className="text-xs text-gray-400">SENHA:</Label>
-            <Lock className="absolute left-3 top-1/2 -translate-y-[-8px] h-5 w-5 text-gray-400" />
+            <Lock className="absolute left-3 top-1/2 h-5 w-5 text-gray-400" />
             <Input 
               id="senha" 
               type="password"
               placeholder="••••"
               className="bg-black border-b-2 border-t-0 border-x-0 border-gray-600 rounded-none pl-10 focus:border-red-500 focus-visible:ring-0 focus-visible:ring-offset-0"
             />
-            <Eye className="absolute right-3 top-1/2 -translate-y-[-8px] h-5 w-5 text-gray-400" />
+            <Eye className="absolute right-3 top-1/2 h-5 w-5 text-gray-400" />
           </div>
         </div>
 

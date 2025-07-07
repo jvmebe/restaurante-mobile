@@ -1,4 +1,3 @@
-// test/app/(app)/pedido/novo/cardapio/page.tsx - VERSÃO COM SKELETONS
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -7,27 +6,26 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { fetchCategorias, fetchProdutos, Categoria, Produto } from '@/lib/api-mock';
 import { ArrowLeft, Search } from 'lucide-react';
-import { Skeleton } from "@/components/ui/skeleton"; // Importe o componente Skeleton
+import { Skeleton } from "@/components/ui/skeleton";
 import { ProductImage } from '@/components/ui/product-image';
-import { SearchDialog } from '../_components/SearchDialog'; // Importe o novo componente
+import { SearchDialog } from '../_components/SearchDialog';
 
 /**
- * Componente para o esqueleto da lista de itens populares.
- * Criar componentes de skeleton separados ajuda a manter o código principal mais limpo.
+ * Componente skeleton de itens populares
  */
 const PopularItemsSkeleton = () => (
   <section>
-    <Skeleton className="h-8 w-40 mb-4" /> {/* Skeleton para o título "Populares" */}
+    <Skeleton className="h-8 w-40 mb-4" />
     <div className="space-y-4">
-      {/* Repete o skeleton de um item algumas vezes */}
+      {/* Repete o skeleton de item algumas vezes */}
       {Array.from({ length: 3 }).map((_, index) => (
         <div key={index} className="flex items-center gap-4">
-          <Skeleton className="h-20 w-20 rounded-md" /> {/* Skeleton para a imagem */}
+          <Skeleton className="h-20 w-20 rounded-md" />
           <div className="flex-1 space-y-2">
-            <Skeleton className="h-4 w-3/4" /> {/* Skeleton para o nome do produto */}
-            <Skeleton className="h-4 w-1/2" /> {/* Skeleton para a descrição */}
+            <Skeleton className="h-4 w-3/4" />
+            <Skeleton className="h-4 w-1/2" /> 
           </div>
-          <Skeleton className="h-6 w-16" /> {/* Skeleton para o preço */}
+          <Skeleton className="h-6 w-16" /> 
         </div>
       ))}
     </div>
@@ -81,18 +79,14 @@ export default function CardapioPage() {
               href={`/pedido/novo/cardapio/${cat.id}?mesaId=${mesaId}`}
               className="relative h-24 rounded-lg overflow-hidden block group"
             >
-              {/* IMAGEM DE FUNDO - CAMADA INFERIOR */}
               <Image 
                 src={cat.imagemUrl}
                 alt={`Fundo da categoria ${cat.nome}`}
                 layout="fill"
                 objectFit="cover"
-                // CORREÇÃO APLICADA AQUI: Adicionado z-10
                 className="transition-transform duration-300 group-hover:scale-110 z-10 blur-[1px]" 
               />
-              {/* EFEITO DE BLUR E TEXTO - CAMADA SUPERIOR */}
               <div 
-                // CORREÇÃO APLICADA AQUI: Adicionado z-20
                 className="absolute inset-0 bg-opacity-0 flex items-center justify-center z-20"
               >
                 <h2 className="text-white font-bold text-lg drop-shadow-[0_1.5px_2px_rgba(0,0,0,1)] z-40">
